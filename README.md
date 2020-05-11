@@ -1,5 +1,5 @@
 # hive-and-es6
-Deploy TheHive Project (version 3) with the latest Elastic Search (version 6)
+Deploy TheHive Project (version 3) with the latest supported Elastic Search (version 6)
 
 Certificate for TheHive Project (do this as soon as you clone the project in the root folder of this project)
 
