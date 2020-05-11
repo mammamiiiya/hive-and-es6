@@ -1,4 +1,3 @@
 cluster.name: "hive"
 network.host: 172.16.17.18
-#network.host: 0.0.0.0
 http.port: 9900
