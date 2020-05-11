@@ -1,0 +1,43 @@
+version: "2"
+services:
+  elasticsearch:
+    image: elasticsearch:6.8.0
+    container_name: elasticsearch6-for-hive
+    volumes:
+      - /var/lib/hive/:/usr/share/elasticsearch/data/
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./jvm.options:/usr/share/elasticsearch/config/jvm.options
+    environment:
+      - thread_pool.index.queue_size=100000
+      - thread_pool.search.queue_size=100000
+      - thread_pool.bulk.queue_size=100000
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+     - "9900:9900"
+    networks:
+     segregate:
+      ipv4_address: 172.16.17.18
+
+  thehive:
+    image: thehiveproject/thehive:3.4.0-RC1
+    container_name: hive
+    volumes:
+      - ./application.conf:/etc/thehive/application.conf
+      - ./thehivekeystore.jks:/etc/thehive/thehivekeystore.jks
+    depends_on:
+      - elasticsearch
+    ports:
+      - "6789:6789"
+    networks:
+     segregate:
+      ipv4_address: 172.16.17.19
+
+networks:
+ segregate:
+  ipam:
+   driver: default
+   config:
+    - subnet: 172.16.17.17/28
