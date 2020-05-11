@@ -1,7 +1,7 @@
 # hive-and-es6
 Deploy TheHive Project (version 3) with the latest Elastic Search (version 6)
 
-Certificate for TheHive Project
+Certificate for TheHive Project (do this as soon as you clone the project in the root folder of this project)
 
 $ keytool -genkey -keyalg RSA -alias selfsigned -keystore thehivekeystore.jks -storepass passwd12 -validity 365 -keysize 4096
 
